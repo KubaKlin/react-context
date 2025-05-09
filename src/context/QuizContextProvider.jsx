@@ -53,6 +53,7 @@ export const QuizContextProvider = ({ children }) => {
       ...previousState,
       userAnswers: [...previousState.userAnswers, answer],
       score: isCorrect ? previousState.score + 1 : previousState.score,
+      cumulativeScore: isCorrect ? previousState.cumulativeScore + 1 : previousState.cumulativeScore,
       currentQuestion: previousState.currentQuestion + 1,
       timer: 10,
     }));
@@ -97,7 +98,7 @@ export const QuizContextProvider = ({ children }) => {
     setQuizState((previousState) => ({
       ...previousState,
       quizStatus: 'completed',
-      cumulativeScore: previousState.cumulativeScore + previousState.score,
+      cumulativeScore: previousState.cumulativeScore,
     }));
   };
 
