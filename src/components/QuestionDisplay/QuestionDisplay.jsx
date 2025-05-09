@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   Box,
   Card,
@@ -14,7 +14,6 @@ function QuestionDisplay() {
     useQuizContext();
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
-  const [shuffledAnswers, setShuffledAnswers] = useState([]);
 
   const currentQuestion = quizState.questions[quizState.currentQuestion];
 
@@ -23,10 +22,10 @@ function QuestionDisplay() {
     ...currentQuestion.incorrect_answers,
   ];
 
-  useEffect(() => {
+  const shuffledAnswers = useMemo(() => {
     setSelectedAnswer(null);
     setShowResult(false);
-    setShuffledAnswers([...answers].sort(() => Math.random() - 0.5));
+    return [...answers].sort(() => Math.random() - 0.5);
   }, [currentQuestion]);
 
   const handleAnswer = (answer) => {
