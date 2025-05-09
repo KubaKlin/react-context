@@ -14,6 +14,7 @@ function QuestionDisplay() {
     useQuizContext();
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
+  const [shuffledAnswers, setShuffledAnswers] = useState([]);
 
   const currentQuestion = quizState.questions[quizState.currentQuestion];
 
@@ -25,6 +26,7 @@ function QuestionDisplay() {
   useEffect(() => {
     setSelectedAnswer(null);
     setShowResult(false);
+    setShuffledAnswers([...answers].sort(() => Math.random() - 0.5));
   }, [currentQuestion]);
 
   const handleAnswer = (answer) => {
@@ -73,7 +75,7 @@ function QuestionDisplay() {
           </Typography>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            {answers.map((answer, index) => (
+            {shuffledAnswers.map((answer, index) => (
               <AnswerButton
                 key={index}
                 answer={answer}
