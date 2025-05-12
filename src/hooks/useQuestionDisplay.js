@@ -16,7 +16,10 @@ const useQuestionDisplay = () => {
   const shuffledAnswers = useMemo(() => {
     setSelectedAnswer(null);
     setShowResult(false);
-    return [...answers].sort(() => Math.random() - 0.5);
+    
+    const getRandomSortValue = () => Math.random() - 0.5;
+    const answersCopy = [...answers];
+    return answersCopy.sort(getRandomSortValue);
   }, [currentQuestion]);
 
   const handleAnswer = (answer) => {
