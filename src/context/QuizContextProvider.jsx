@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import QuizContext from './QuizContext';
+import useQuizTimer from '../hooks/useQuizTimer';
 
 const initialState = {
   quizSettings: {
@@ -58,29 +59,28 @@ export const QuizContextProvider = ({ children }) => {
       timer: 10,
     }));
   };
+  const handleCompleteQuiz = () => {
+    setQuizState((previousState) => ({
+      ...previousState,
+      quizStatus: 'completed',
+      cumulativeScore: previousState.cumulativeScore,
+    }));
+  };
 
-  useEffect(() => {
-    let timer;
-    if (quizState.quizStatus === 'inProgress' && quizState.timer > 0) {
-      timer = setInterval(() => {
-        setQuizState((previousState) => ({
-          ...previousState,
-          timer: previousState.timer - 1,
-        }));
-      }, 1000);
-    } else if (quizState.timer === 0 && quizState.quizStatus === 'inProgress') {
-      handleAnswerQuestion(null);
-      if (quizState.currentQuestion === quizState.questions.length) {
-        handleCompleteQuiz();
-      }
-    }
-    return () => clearInterval(timer);
-  }, [
-    quizState.timer,
-    quizState.quizStatus,
-    quizState.currentQuestion,
-    quizState.questions.length,
-  ]);
+  useQuizTimer({
+    quizStatus: quizState.quizStatus,
+    timer: quizState.timer,
+    currentQuestion: quizState.currentQuestion,
+    questionsLength: quizState.questions.length,
+    onTimerTick: () => {
+      setQuizState((previousState) => ({
+        ...previousState,
+        timer: previousState.timer - 1,
+      }));
+    },
+    onTimeUp: () => handleAnswerQuestion(null),
+    onComplete: handleCompleteQuiz
+  });
 
   const setQuestions = (questions) => {
     setQuizState((previousState) => ({
@@ -94,13 +94,6 @@ export const QuizContextProvider = ({ children }) => {
     }));
   };
 
-  const handleCompleteQuiz = () => {
-    setQuizState((previousState) => ({
-      ...previousState,
-      quizStatus: 'completed',
-      cumulativeScore: previousState.cumulativeScore,
-    }));
-  };
 
   const resetQuiz = () => {
     setQuizState((previousState) => ({
@@ -154,8 +147,8 @@ export const QuizContextProvider = ({ children }) => {
         quizState,
         setQuizSettings,
         handleAnswerQuestion,
-        setQuestions,
         handleCompleteQuiz,
+        setQuestions,
         resetQuiz,
         resetAll,
         fetchQuestions,
