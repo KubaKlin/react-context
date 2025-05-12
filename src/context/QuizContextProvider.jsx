@@ -124,9 +124,12 @@ export const QuizContextProvider = ({ children }) => {
 
     const { numberOfQuestions, category, difficulty } =
       currentState.quizSettings;
-    let apiUrl = `https://opentdb.com/api.php?amount=${numberOfQuestions}`;
-    if (category !== 'any') apiUrl += `&category=${category}`;
-    if (difficulty !== 'any') apiUrl += `&difficulty=${difficulty}`;
+    const params = new URLSearchParams({
+      amount: numberOfQuestions,
+      ...(category !== 'any' && { category }),
+      ...(difficulty !== 'any' && { difficulty })
+    });
+    const apiUrl = `https://opentdb.com/api.php?${params.toString()}`;
 
     try {
       const response = await fetch(apiUrl);
