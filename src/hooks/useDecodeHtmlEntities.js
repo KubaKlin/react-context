@@ -18,7 +18,10 @@ const useDecodeHtmlEntities = (string) => {
     '&mdash;': '—',
     '&ndash;': '–',
   };
-  return string.replace(/&[a-zA-Z0-9#]+;/g, (entity) => entityMap[entity] || entity);
+  return string.replace(
+    /&[a-zA-Z0-9#]+;/g,
+    (entity) => entityMap[entity] || entity,
+  );
 };
 
 export default useDecodeHtmlEntities;

@@ -1,6 +1,6 @@
 import { Box, Divider, Typography } from '@mui/material';
 import useQuizContext from '../../context/useQuizContext';
-import useDecodeHtmlEntities from "../../hooks/useDecodeHtmlEntities";
+import useDecodeHtmlEntities from '../../hooks/useDecodeHtmlEntities';
 
 function QuizReviewSummary() {
   const { quizState } = useQuizContext();
@@ -21,7 +21,9 @@ function QuizReviewSummary() {
                 : 'error'
             }
           >
-            Your answer: {useDecodeHtmlEntities(quizState.userAnswers[index]) || 'Time ran out'}
+            Your answer:{' '}
+            {useDecodeHtmlEntities(quizState.userAnswers[index]) ||
+              'Time ran out'}
           </Typography>
 
           {quizState.userAnswers[index] !== question.correct_answer && (

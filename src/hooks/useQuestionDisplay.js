@@ -2,7 +2,8 @@ import { useState, useMemo } from 'react';
 import useQuizContext from '../context/useQuizContext';
 
 const useQuestionDisplay = () => {
-  const { quizState, handleAnswerQuestion, handleCompleteQuiz } = useQuizContext();
+  const { quizState, handleAnswerQuestion, handleCompleteQuiz } =
+    useQuizContext();
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
 
@@ -16,7 +17,7 @@ const useQuestionDisplay = () => {
   const shuffledAnswers = useMemo(() => {
     setSelectedAnswer(null);
     setShowResult(false);
-    
+
     const getRandomSortValue = () => Math.random() - 0.5;
     const answersCopy = [...answers];
     return answersCopy.sort(getRandomSortValue);
@@ -53,4 +54,4 @@ const useQuestionDisplay = () => {
   };
 };
 
-export default useQuestionDisplay; 
+export default useQuestionDisplay;

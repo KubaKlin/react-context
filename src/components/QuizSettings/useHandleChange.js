@@ -8,9 +8,8 @@ const transformQuestionValue = (rawValue) => {
 
 const useHandleChange = (field, setSettings) => (event) => {
   const rawValue = event.target.value;
-  const transformedValue = field === 'numberOfQuestions' 
-    ? transformQuestionValue(rawValue)
-    : rawValue;
+  const transformedValue =
+    field === 'numberOfQuestions' ? transformQuestionValue(rawValue) : rawValue;
 
   return setSettings((previousSettings) => ({
     ...previousSettings,

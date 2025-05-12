@@ -49,12 +49,14 @@ export const QuizContextProvider = ({ children }) => {
 
   const handleAnswerQuestion = (answer) => {
     const isCorrect =
-        answer === quizState.questions[quizState.currentQuestion].correct_answer;
+      answer === quizState.questions[quizState.currentQuestion].correct_answer;
     setQuizState((previousState) => ({
       ...previousState,
       userAnswers: [...previousState.userAnswers, answer],
       score: isCorrect ? previousState.score + 1 : previousState.score,
-      cumulativeScore: isCorrect ? previousState.cumulativeScore + 1 : previousState.cumulativeScore,
+      cumulativeScore: isCorrect
+        ? previousState.cumulativeScore + 1
+        : previousState.cumulativeScore,
       currentQuestion: previousState.currentQuestion + 1,
       timer: 10,
     }));
@@ -79,7 +81,7 @@ export const QuizContextProvider = ({ children }) => {
       }));
     },
     onTimeUp: () => handleAnswerQuestion(null),
-    onComplete: handleCompleteQuiz
+    onComplete: handleCompleteQuiz,
   });
 
   const setQuestions = (questions) => {
@@ -93,7 +95,6 @@ export const QuizContextProvider = ({ children }) => {
       quizStatus: 'inProgress',
     }));
   };
-
 
   const resetQuiz = () => {
     setQuizState((previousState) => ({
@@ -127,7 +128,7 @@ export const QuizContextProvider = ({ children }) => {
     const params = new URLSearchParams({
       amount: numberOfQuestions,
       ...(category !== 'any' && { category }),
-      ...(difficulty !== 'any' && { difficulty })
+      ...(difficulty !== 'any' && { difficulty }),
     });
     const apiUrl = `https://opentdb.com/api.php?${params.toString()}`;
 

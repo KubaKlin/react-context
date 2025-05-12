@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@mui/material';
 import AnswerButton from './AnswerButton';
-import useDecodeHtmlEntities from "../../hooks/useDecodeHtmlEntities";
+import useDecodeHtmlEntities from '../../hooks/useDecodeHtmlEntities';
 import useQuestionDisplay from '../../hooks/useQuestionDisplay';
 
 function QuestionDisplay() {

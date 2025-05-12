@@ -7,7 +7,7 @@ const useQuizTimer = ({
   questionsLength,
   onTimerTick,
   onTimeUp,
-  onComplete
+  onComplete,
 }) => {
   useEffect(() => {
     const timerInterval = setInterval(() => {
@@ -29,8 +29,8 @@ const useQuizTimer = ({
     questionsLength,
     onTimerTick,
     onTimeUp,
-    onComplete
+    onComplete,
   ]);
 };
 
-export default useQuizTimer; 
+export default useQuizTimer;
