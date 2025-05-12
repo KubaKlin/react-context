@@ -1,5 +1,5 @@
 import { Divider, Typography } from '@mui/material';
-import useQuizContext from '../../context/useQuizContext.jsx';
+import useQuizContext from '../../context/useQuizContext';
 
 function QuizReviewHead() {
   const { quizState } = useQuizContext();

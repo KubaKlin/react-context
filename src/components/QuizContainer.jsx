@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import useQuizContext from '../context/useQuizContext.jsx';
+import useQuizContext from '../context/useQuizContext';
 import ScoreDisplay from './ScoreDisplay';
 import QuizSettings from './QuizSettings/QuizSettings';
 import QuestionDisplay from './QuestionDisplay/QuestionDisplay';

@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import useQuizContext from '../../context/useQuizContext.jsx';
+import useQuizContext from '../../context/useQuizContext';
 import useHandleChange from './useHandleChange';
 
 function QuizSettings() {

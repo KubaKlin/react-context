@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material';
 import AnswerButton from './AnswerButton';
-import useQuizContext from '../../context/useQuizContext.jsx';
+import useQuizContext from '../../context/useQuizContext';
 
 function QuestionDisplay() {
   const { quizState, handleAnswerQuestion, handleCompleteQuiz } =

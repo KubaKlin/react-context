@@ -1,5 +1,5 @@
 import { Box, Button } from '@mui/material';
-import useQuizContext from '../../context/useQuizContext.jsx';
+import useQuizContext from '../../context/useQuizContext';
 
 function QuizReviewButtons() {
   const { resetQuiz, resetAll } = useQuizContext();
