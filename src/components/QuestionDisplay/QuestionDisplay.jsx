@@ -29,7 +29,9 @@ function QuestionDisplay() {
   }, [currentQuestion]);
 
   const handleAnswer = (answer) => {
-    if (selectedAnswer !== null) return;
+    if (selectedAnswer !== null) {
+      return;
+    }
 
     setSelectedAnswer(answer);
     setShowResult(true);

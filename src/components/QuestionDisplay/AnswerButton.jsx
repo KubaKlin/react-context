@@ -2,7 +2,9 @@ import { Button } from '@mui/material';
 
 const AnswerButton = ({ answer, isCorrect, showResult, onAnswer }) => {
   const getColor = () => {
-    if (!showResult) return 'primary';
+    if (!showResult) {
+      return 'primary';
+    }
     if (isCorrect) {
       return 'success';
     }

@@ -4,7 +4,9 @@ import useQuizContext from '../context/useQuizContext';
 function ScoreDisplay() {
   const { quizState } = useQuizContext();
 
-  if (quizState.quizStatus === 'notStarted') return null;
+  if (quizState.quizStatus === 'notStarted') {
+    return null;
+  }
 
   return (
     <Paper
