@@ -8,6 +8,8 @@ import {
 } from '@mui/material';
 import AnswerButton from './AnswerButton';
 import useQuizContext from '../../context/useQuizContext';
+import useDecodeHtmlEntities from "../../hooks/useDecodeHtmlEntities";
+
 
 function QuestionDisplay() {
   const { quizState, handleAnswerQuestion, handleCompleteQuiz } =
@@ -64,7 +66,7 @@ function QuestionDisplay() {
       <Card sx={{ mb: 3 }}>
         <CardContent>
           <Typography variant="h6" gutterBottom>
-            {currentQuestion.question}
+            {useDecodeHtmlEntities(currentQuestion.question)}
           </Typography>
 
           <Typography
@@ -79,7 +81,7 @@ function QuestionDisplay() {
             {shuffledAnswers.map((answer, index) => (
               <AnswerButton
                 key={index}
-                answer={answer}
+                answer={useDecodeHtmlEntities(answer)}
                 isSelected={selectedAnswer === answer}
                 isCorrect={answer === currentQuestion.correct_answer}
                 showResult={showResult}

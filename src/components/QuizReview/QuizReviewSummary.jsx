@@ -1,5 +1,6 @@
 import { Box, Divider, Typography } from '@mui/material';
 import useQuizContext from '../../context/useQuizContext';
+import useDecodeHtmlEntities from "../../hooks/useDecodeHtmlEntities";
 
 function QuizReviewSummary() {
   const { quizState } = useQuizContext();
@@ -9,7 +10,7 @@ function QuizReviewSummary() {
       {quizState.questions.map((question, index) => (
         <Box key={index} sx={{ mb: 2 }}>
           <Typography variant="subtitle1" gutterBottom>
-            {index + 1}. {question.question}
+            {index + 1}. {useDecodeHtmlEntities(question.question)}
           </Typography>
 
           <Typography
@@ -20,12 +21,12 @@ function QuizReviewSummary() {
                 : 'error'
             }
           >
-            Your answer: {quizState.userAnswers[index] || 'Time ran out'}
+            Your answer: {useDecodeHtmlEntities(quizState.userAnswers[index]) || 'Time ran out'}
           </Typography>
 
           {quizState.userAnswers[index] !== question.correct_answer && (
             <Typography variant="body2" color="success.main">
-              Correct answer: {question.correct_answer}
+              Correct answer: {useDecodeHtmlEntities(question.correct_answer)}
             </Typography>
           )}
 
