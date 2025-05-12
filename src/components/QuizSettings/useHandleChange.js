@@ -1,14 +1,20 @@
-const useHandleChange = (field, setSettings) => (event) => {
-  let value = event.target.value;
+const minimumQuestions = 1;
+const maximumQuestions = 20;
 
-  // range of number of questions
-  if (field === 'numberOfQuestions') {
-    value = Math.max(1, Math.min(20, parseInt(value) || 1));
-  }
+const transformQuestionValue = (rawValue) => {
+  const parsedValue = parseInt(rawValue) || minimumQuestions;
+  return Math.min(maximumQuestions, Math.max(minimumQuestions, parsedValue));
+};
+
+const useHandleChange = (field, setSettings) => (event) => {
+  const rawValue = event.target.value;
+  const transformedValue = field === 'numberOfQuestions' 
+    ? transformQuestionValue(rawValue)
+    : rawValue;
 
   return setSettings((previousSettings) => ({
     ...previousSettings,
-    [field]: value,
+    [field]: transformedValue,
   }));
 };
 
