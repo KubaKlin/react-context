@@ -46,8 +46,9 @@ function QuestionDisplay() {
     }, 1500);
   };
 
-  const progress =
-    ((quizState.currentQuestion + 1) / quizState.questions.length) * 100;
+  const quizCurrentQuestion = quizState.currentQuestion + 1;
+  const quizNumberOfQuestions = quizState.questions.length;
+  const progress = (quizCurrentQuestion / quizNumberOfQuestions) * 100;
 
   return (
     <Box sx={{ width: '100%' }}>
