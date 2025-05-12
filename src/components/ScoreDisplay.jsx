@@ -1,5 +1,5 @@
 import { Box, Paper, Typography } from '@mui/material';
-import useQuizContext from '../hooks/useQuizContext';
+import useQuizContext from '../context/useQuizContext.jsx';
 
 function ScoreDisplay() {
   const { quizState } = useQuizContext();
