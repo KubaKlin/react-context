@@ -8,6 +8,8 @@ import QuizReview from './QuizReview/QuizReview';
 function QuizContainer() {
   const { quizState } = useQuizContext();
 
+  const isQuizNotFinished= quizState.quizStatus === 'inProgress' && quizState.questions.length > 0
+
   return (
     <Box sx={{ width: '100%', maxWidth: 800 }}>
       <Typography variant="h3" component="h1" gutterBottom align="center">
@@ -18,8 +20,7 @@ function QuizContainer() {
 
       {quizState.quizStatus === 'notStarted' && <QuizSettings />}
 
-      {quizState.quizStatus === 'inProgress' &&
-        quizState.questions.length > 0 && <QuestionDisplay />}
+      {isQuizNotFinished && <QuestionDisplay />}
 
       {quizState.quizStatus === 'completed' && <QuizReview />}
     </Box>
