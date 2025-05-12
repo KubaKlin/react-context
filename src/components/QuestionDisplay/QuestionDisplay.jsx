@@ -85,7 +85,7 @@ function QuestionDisplay() {
                 isSelected={selectedAnswer === answer}
                 isCorrect={answer === currentQuestion.correct_answer}
                 showResult={showResult}
-                onAnswer={handleAnswer}
+                onClick={() => handleAnswer(answer)}
               />
             ))}
           </Box>

@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 
-const AnswerButton = ({ answer, isCorrect, showResult, onAnswer }) => {
+const AnswerButton = ({ answer, isCorrect, showResult, onClick }) => {
   const getColor = () => {
     if (!showResult) {
       return 'primary';
@@ -15,7 +15,7 @@ const AnswerButton = ({ answer, isCorrect, showResult, onAnswer }) => {
     <Button
       variant="contained"
       color={getColor()}
-      onClick={() => onAnswer(answer)}
+      onClick={onClick}
       fullWidth
       sx={{ justifyContent: 'flex-start', textAlign: 'left' }}
     >
