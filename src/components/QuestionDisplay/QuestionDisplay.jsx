@@ -20,6 +20,9 @@ function QuestionDisplay() {
     quizState,
   } = useQuestionDisplay();
 
+  const decodedQuestion = useDecodeHtmlEntities(currentQuestion.question);
+  const decodedShuffledAnswers = shuffledAnswers.map((answer) => useDecodeHtmlEntities(answer));
+
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ mb: 2 }}>
@@ -37,7 +40,7 @@ function QuestionDisplay() {
       <Card sx={{ mb: 3 }}>
         <CardContent>
           <Typography variant="h6" gutterBottom>
-            {useDecodeHtmlEntities(currentQuestion.question)}
+            {decodedQuestion}
           </Typography>
 
           <Typography
@@ -49,14 +52,14 @@ function QuestionDisplay() {
           </Typography>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            {shuffledAnswers.map((answer, index) => (
+            {decodedShuffledAnswers.map((decodedAnswer, index) => (
               <AnswerButton
                 key={index}
-                answer={useDecodeHtmlEntities(answer)}
-                isSelected={selectedAnswer === answer}
-                isCorrect={answer === currentQuestion.correct_answer}
+                answer={decodedAnswer}
+                isSelected={selectedAnswer === shuffledAnswers[index]}
+                isCorrect={shuffledAnswers[index] === currentQuestion.correct_answer}
                 showResult={showResult}
-                onClick={() => handleAnswer(answer)}
+                onClick={() => handleAnswer(shuffledAnswers[index])}
               />
             ))}
           </Box>

@@ -5,12 +5,19 @@ import useDecodeHtmlEntities from '../../hooks/useDecodeHtmlEntities';
 function QuizReviewSummary() {
   const { quizState } = useQuizContext();
 
+  // Pre-decode all questions, user answers, and correct answers
+  const decodedQuestions = quizState.questions.map((q) => ({
+    question: useDecodeHtmlEntities(q.question),
+    correctAnswer: useDecodeHtmlEntities(q.correct_answer),
+  }));
+  const decodedUserAnswers = quizState.userAnswers.map((a) => useDecodeHtmlEntities(a));
+
   return (
     <div>
       {quizState.questions.map((question, index) => (
         <Box key={index} sx={{ mb: 2 }}>
           <Typography variant="subtitle1" gutterBottom>
-            {index + 1}. {useDecodeHtmlEntities(question.question)}
+            {index + 1}. {decodedQuestions[index].question}
           </Typography>
 
           <Typography
@@ -22,13 +29,12 @@ function QuizReviewSummary() {
             }
           >
             Your answer:{' '}
-            {useDecodeHtmlEntities(quizState.userAnswers[index]) ||
-              'Time ran out'}
+            {decodedUserAnswers[index] || 'Time ran out'}
           </Typography>
 
           {quizState.userAnswers[index] !== question.correct_answer && (
             <Typography variant="body2" color="success.main">
-              Correct answer: {useDecodeHtmlEntities(question.correct_answer)}
+              Correct answer: {decodedQuestions[index].correctAnswer}
             </Typography>
           )}
 
