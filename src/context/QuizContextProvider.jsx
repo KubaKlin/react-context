@@ -35,16 +35,10 @@ export const QuizContextProvider = ({ children }) => {
   }, []);
 
   const setQuizSettings = (settings) => {
-    return new Promise((resolve) => {
-      setQuizState((previousState) => {
-        const newState = {
-          ...previousState,
-          quizSettings: { ...previousState.quizSettings, ...settings },
-        };
-        resolve(newState);
-        return newState;
-      });
-    });
+    setQuizState((previousState) => ({
+      ...previousState,
+      quizSettings: { ...previousState.quizSettings, ...settings },
+    }));
   };
 
   const handleAnswerQuestion = (answer) => {
