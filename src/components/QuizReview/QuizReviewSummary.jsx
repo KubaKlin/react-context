@@ -1,16 +1,16 @@
 import { Box, Divider, Typography } from '@mui/material';
 import useQuizContext from '../../context/useQuizContext';
-import useDecodeHtmlEntities from '../../hooks/useDecodeHtmlEntities';
+import formatQuestion from '../QuestionDisplay/FormatQuestion.js';
 
 function QuizReviewSummary() {
   const { quizState } = useQuizContext();
 
   // Pre-decode all questions, user answers, and correct answers
   const decodedQuestions = quizState.questions.map((q) => ({
-    question: useDecodeHtmlEntities(q.question),
-    correctAnswer: useDecodeHtmlEntities(q.correct_answer),
+    question: formatQuestion(q.question),
+    correctAnswer: formatQuestion(q.correct_answer),
   }));
-  const decodedUserAnswers = quizState.userAnswers.map((a) => useDecodeHtmlEntities(a));
+  const decodedUserAnswers = quizState.userAnswers.map((a) => formatQuestion(a));
 
   return (
     <div>

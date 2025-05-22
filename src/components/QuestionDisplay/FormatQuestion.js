@@ -1,4 +1,4 @@
-const useDecodeHtmlEntities = (string) => {
+const FormatQuestion = (string) => {
   if (!string) {
     return '';
   }
@@ -24,4 +24,4 @@ const useDecodeHtmlEntities = (string) => {
   );
 };
 
-export default useDecodeHtmlEntities;
+export default FormatQuestion;

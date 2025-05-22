@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@mui/material';
 import AnswerButton from './AnswerButton';
-import useDecodeHtmlEntities from '../../hooks/useDecodeHtmlEntities';
+import formatQuestion from './FormatQuestion.js';
 import useQuestionDisplay from '../../hooks/useQuestionDisplay';
 
 function QuestionDisplay() {
@@ -20,8 +20,8 @@ function QuestionDisplay() {
     quizState,
   } = useQuestionDisplay();
 
-  const decodedQuestion = useDecodeHtmlEntities(currentQuestion.question);
-  const decodedShuffledAnswers = shuffledAnswers.map((answer) => useDecodeHtmlEntities(answer));
+  const decodedQuestion = formatQuestion(currentQuestion.question);
+  const decodedShuffledAnswers = shuffledAnswers.map((answer) => formatQuestion(answer));
 
   return (
     <Box sx={{ width: '100%' }}>
