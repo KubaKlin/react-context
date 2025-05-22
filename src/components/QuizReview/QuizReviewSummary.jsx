@@ -1,4 +1,5 @@
 import { Box, Divider, Typography } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 import useQuizContext from '../../context/useQuizContext';
 import formatQuestion from '../QuestionDisplay/FormatQuestion.js';
 
@@ -15,7 +16,7 @@ function QuizReviewSummary() {
   return (
     <div>
       {quizState.questions.map((question, index) => (
-        <Box key={index} sx={{ mb: 2 }}>
+        <Box key={uuidv4()} sx={{ mb: 2 }}>
           <Typography variant="subtitle1" gutterBottom>
             {index + 1}. {decodedQuestions[index].question}
           </Typography>

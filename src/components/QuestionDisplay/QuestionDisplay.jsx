@@ -5,6 +5,7 @@ import {
   LinearProgress,
   Typography,
 } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 import AnswerButton from './AnswerButton';
 import formatQuestion from './FormatQuestion.js';
 import useQuestionDisplay from '../../hooks/useQuestionDisplay';
@@ -54,7 +55,7 @@ function QuestionDisplay() {
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             {decodedShuffledAnswers.map((decodedAnswer, index) => (
               <AnswerButton
-                key={index}
+                key={uuidv4()}
                 answer={decodedAnswer}
                 isSelected={selectedAnswer === shuffledAnswers[index]}
                 isCorrect={shuffledAnswers[index] === currentQuestion.correct_answer}
