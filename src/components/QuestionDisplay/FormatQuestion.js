@@ -2,26 +2,10 @@ const FormatQuestion = (string) => {
   if (!string) {
     return '';
   }
-  const entityMap = {
-    '&amp;': '&',
-    '&lt;': '<',
-    '&gt;': '>',
-    '&quot;': '"',
-    '&#039;': "'",
-    '&apos;': "'",
-    '&nbsp;': ' ',
-    '&rsquo;': '’',
-    '&lsquo;': '‘',
-    '&ldquo;': '“',
-    '&rdquo;': '”',
-    '&hellip;': '…',
-    '&mdash;': '—',
-    '&ndash;': '–',
-  };
-  return string.replace(
-    /&[a-zA-Z0-9#]+;/g,
-    (entity) => entityMap[entity] || entity,
-  );
+
+  const txt = document.createElement("textarea");
+  txt.innerHTML = string;
+  return txt.value;
 };
 
 export default FormatQuestion;
