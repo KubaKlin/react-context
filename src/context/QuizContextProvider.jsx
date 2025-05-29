@@ -130,7 +130,12 @@ export const QuizContextProvider = ({ children }) => {
       const response = await fetch(apiUrl);
       const data = await response.json();
       if (data.results && data.results.length > 0) {
-        setQuestions(data.results);
+        // Add unique IDs to questions
+        const questionsWithIds = data.results.map((question, index) => ({
+          ...question,
+          id: `question-${index}-${Date.now()}`,
+        }));
+        setQuestions(questionsWithIds);
       } else {
         console.error('No questions received from the API');
       }
