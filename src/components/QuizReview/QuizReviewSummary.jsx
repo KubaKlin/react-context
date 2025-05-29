@@ -1,7 +1,7 @@
 import { Box, Divider, Typography } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import useQuizContext from '../../context/useQuizContext';
-import formatQuestion from '../QuestionDisplay/FormatQuestion.js';
+import formatQuestion from '../QuestionDisplay/FormatQuestion';
 
 function QuizReviewSummary() {
   const { quizState } = useQuizContext();

@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import AnswerButton from './AnswerButton';
-import formatQuestion from './FormatQuestion.js';
+import formatQuestion from './FormatQuestion';
 import useQuestionDisplay from '../../hooks/useQuestionDisplay';
 
 function QuestionDisplay() {
