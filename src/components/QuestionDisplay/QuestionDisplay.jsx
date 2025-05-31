@@ -54,7 +54,7 @@ function QuestionDisplay() {
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             {decodedShuffledAnswers.map((decodedAnswer, index) => (
               <AnswerButton
-                key={`${currentQuestion.id}-answer-${index}`}
+                key={currentQuestion.id}
                 answer={decodedAnswer}
                 isSelected={selectedAnswer === shuffledAnswers[index]}
                 isCorrect={shuffledAnswers[index] === currentQuestion.correct_answer}
