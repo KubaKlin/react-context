@@ -7,11 +7,13 @@ function QuizReviewSummary() {
   const { quizState } = useQuizContext();
 
   // Pre-decode all questions, user answers, and correct answers
-  const decodedQuestions = quizState.questions.map((q) => ({
-    question: formatQuestion(q.question),
-    correctAnswer: formatQuestion(q.correct_answer),
+  const decodedQuestions = quizState.questions.map((item) => ({
+    question: formatQuestion(item.question),
+    correctAnswer: formatQuestion(item.correct_answer),
   }));
-  const decodedUserAnswers = quizState.userAnswers.map((a) => formatQuestion(a));
+  const decodedUserAnswers = quizState.userAnswers.map((item) =>
+    formatQuestion(item),
+  );
 
   return (
     <div>
@@ -29,8 +31,7 @@ function QuizReviewSummary() {
                 : 'error'
             }
           >
-            Your answer:{' '}
-            {decodedUserAnswers[index] || 'Time ran out'}
+            Your answer: {decodedUserAnswers[index] || 'Time ran out'}
           </Typography>
 
           {quizState.userAnswers[index] !== question.correct_answer && (

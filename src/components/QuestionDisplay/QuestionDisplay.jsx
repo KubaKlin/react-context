@@ -21,7 +21,9 @@ function QuestionDisplay() {
   } = useQuestionDisplay();
 
   const decodedQuestion = formatQuestion(currentQuestion.question);
-  const decodedShuffledAnswers = shuffledAnswers.map((answer) => formatQuestion(answer));
+  const decodedShuffledAnswers = shuffledAnswers.map((answer) =>
+    formatQuestion(answer),
+  );
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -57,7 +59,9 @@ function QuestionDisplay() {
                 key={currentQuestion.id}
                 answer={decodedAnswer}
                 isSelected={selectedAnswer === shuffledAnswers[index]}
-                isCorrect={shuffledAnswers[index] === currentQuestion.correct_answer}
+                isCorrect={
+                  shuffledAnswers[index] === currentQuestion.correct_answer
+                }
                 showResult={showResult}
                 onClick={() => handleAnswer(shuffledAnswers[index])}
               />

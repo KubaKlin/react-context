@@ -3,7 +3,7 @@ const FormatQuestion = (string) => {
     return '';
   }
 
-  const txt = document.createElement("textarea");
+  const txt = document.createElement('textarea');
   txt.innerHTML = string;
   return txt.value;
 };
