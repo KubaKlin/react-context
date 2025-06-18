@@ -1,10 +1,24 @@
-function App() {
+import { Box, Container } from '@mui/material';
+import { QuizContextProvider } from './context/QuizContextProvider';
+import QuizContainer from './components/QuizContainer';
 
+function App() {
   return (
-    <>
-      <h1>hello</h1>
-    </>
-  )
+    <QuizContextProvider>
+      <Container maxWidth="sm">
+        <Box
+          sx={{
+            py: 4,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <QuizContainer />
+        </Box>
+      </Container>
+    </QuizContextProvider>
+  );
 }
 
-export default App
+export default App;
